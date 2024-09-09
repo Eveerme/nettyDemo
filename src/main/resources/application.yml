@@ -1,0 +1,35 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: netty-proxy
+
+netty:
+  tcp:
+    client:
+      ip: 192.168.31.115
+      port: 9890
+      # 传输模式linux上开启会有更高的性能
+      use-epoll: false
+    server:
+      ip: 0.0.0.0
+      port: 8881
+      # 传输模式linux上开启会有更高的性能
+      use-epoll: false
+  udp:
+    client:
+      ip: 192.168.31.115
+      port: 9890
+      # 传输模式linux上开启会有更高的性能
+      use-epoll: false
+    server:
+      ip: 0.0.0.0
+      port: 8881
+      # 传输模式linux上开启会有更高的性能
+      use-epoll: false
+
+# 日记配置
+logging:
+  level:
+    com.netty: debug
