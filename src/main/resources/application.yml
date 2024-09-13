@@ -4,11 +4,10 @@ server:
 spring:
   application:
     name: netty-proxy
-
 netty:
   tcp:
     client:
-      ip: 192.168.31.115
+      ip: 192.168.212.253
       port: 9890
       # 传输模式linux上开启会有更高的性能
       use-epoll: false
@@ -19,13 +18,13 @@ netty:
       use-epoll: false
   udp:
     client:
-      ip: 192.168.31.115
+      ip: 192.168.212.253
       port: 9890
       # 传输模式linux上开启会有更高的性能
       use-epoll: false
     server:
       ip: 0.0.0.0
-      port: 8881
+      port: 8882
       # 传输模式linux上开启会有更高的性能
       use-epoll: false
 

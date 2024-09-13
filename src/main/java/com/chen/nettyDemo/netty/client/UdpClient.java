@@ -44,13 +44,12 @@ public class UdpClient {
                         protected void initChannel(DatagramChannel ch) throws Exception {
                             ch.pipeline().addLast(new UdpClientHandler(key));
                         }
-                    })
-                    .remoteAddress(ip, port);
+                    });
             bootstrap.group(WORKER_GROUP);
-            ChannelFuture future = bootstrap.connect().sync();
-            channel = future.channel();
+            ChannelFuture future = bootstrap.connect(ip, port).sync();
             if (future.isSuccess()) {
                 log.info("Udp Client 连接服务端成功！！");
+                channel = future.channel();
                 NettyUtils.udpClientChannelMap.put(key, channel);
                 sendMsg(msg);
                 future.channel().closeFuture().sync();

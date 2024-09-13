@@ -30,7 +30,7 @@ public class TcpServer implements ITcpServer {
 
     @Override
     public void start(String ip, int port, boolean isUseEpoll) {
-        log.info("初始化 TCP server ..." + ip + ":" + port);
+        log.info("初始化 TCP server :" + ip + ":" + port);
         this.ip = ip;
         this.port = port;
         this.isUseEpoll = isUseEpoll;

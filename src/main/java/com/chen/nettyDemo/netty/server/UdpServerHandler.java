@@ -14,14 +14,6 @@ import java.net.InetSocketAddress;
 public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
     private byte[] content;
 
-    /*
-     * 覆盖channelActive 方法在channel被启用的时候触发（在建立连接的时候）
-     * 覆盖了 channelActive() 事件处理方法。服务端监听到客户端活动
-     */
-    public void channelActive(ChannelHandlerContext ctx) {
-        log.info("UDP 服务端连接成功！！");
-    }
-
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet) {
         ByteBuf msg = packet.content();

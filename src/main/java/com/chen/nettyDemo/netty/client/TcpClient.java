@@ -1,7 +1,10 @@
 package com.chen.nettyDemo.netty.client;
 
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -89,7 +92,7 @@ public class TcpClient implements ITcpClient {
         channel = future.channel();
         if (future.isSuccess()) {
             socketChannel = (SocketChannel) future.channel();
-            log.info("TCP connect server success");
+            log.info("TCP Client 连接服务端成功！！");
             future.channel().closeFuture().sync();
             log.info("TCP 客户端连接已关闭===");
         }
