@@ -1,8 +1,10 @@
 package com.chen.nettyDemo.netty;
 
+import com.chen.nettyDemo.disruptor.OrderEventProducer;
+import com.chen.nettyDemo.netty.client.TcpClient;
 import com.chen.nettyDemo.netty.server.TcpServer;
 import com.chen.nettyDemo.netty.server.UdpServer;
-import com.chen.nettyDemo.netty.client.TcpClient;
+import com.chen.nettyDemo.utils.SpringUtils;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class NettyUtils {
+
+    public static OrderEventProducer tcpSend = SpringUtils.getBean(OrderEventProducer.class);
+    public static OrderEventProducer tcpSendQueue = SpringUtils.getBean(OrderEventProducer.class);
+    public static OrderEventProducer tcpRecv = SpringUtils.getBean(OrderEventProducer.class);
+    public static OrderEventProducer tcpRecvQueue = SpringUtils.getBean(OrderEventProducer.class);
 
     public static String tcpClientip;
 
@@ -52,6 +59,7 @@ public class NettyUtils {
     public static void sendClientResponse(String key, byte[] msg) {
         log.info("发送Tcp Client消息，{}" + key);
         Channel channel = tcpClientChannelMap.get(key);
+
         channel.writeAndFlush(Unpooled.copiedBuffer(msg));
     }
 
